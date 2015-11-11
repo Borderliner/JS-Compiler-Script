@@ -30,10 +30,11 @@ function prompt
 function replace
 {
 	C_FILES="*.jsc"
+	echo "Replacing old files with new ones..."
 	for f in $C_FILES
 	do
-		echo "Replacing old files with new ones..."
 		FILE_NAME=$(echo $f | cut -d'.' -f 1)
+		rm FILE_NAME".js"
 		mv $f $FILE_NAME".js"
 	done
 }
