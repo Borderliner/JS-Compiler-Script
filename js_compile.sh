@@ -1,23 +1,37 @@
 #! /usr/bin/bash
 
+RED=`tput setaf 1`
+GREEN=`tput setaf 2`
+ORANGE=`tput setaf 3`
+PINK=`tput setaf 5`
+RESET=`tput sgr0`
+
 function compile
 {
 	FILES="*.js"
 	for f in $FILES
 	do
-		#If file name contains ".min" ignore that file
-		if [[ "$f" == *.min.* ]]
+		#If folder does not contain any JS files, exit
+		if [[ "$f" = "*.js" ]]
 		then
-			echo $f" is already minified."
+			echo "${RED}Could not find any JavaScript files here.${RESET}"
+			exit
+		fi
+
+		#If file name contains ".min" ignore that file
+		if [[ "$f" == *.min.* ]] || [[ "$f" == *-min.* ]]
+		then
+			echo "${RED}"$f"${ORANGE} is already minified.${RESET}"
 		else
 			OUTPUT_FILE=$f"c"
 			INPUT_FILE=$f
-			echo "Compiling \""$INPUT_FILE"\""
+			echo "Compiling ${PINK}\""$INPUT_FILE"\"${RESET}"
 			closure --js $INPUT_FILE --js_output_file $OUTPUT_FILE
 		fi
 	done
 
 	prompt
+	echo "${GREEN}Successfully compiled!${RESET}"
 }
 
 function prompt
@@ -36,7 +50,7 @@ function prompt
 function replace
 {
 	C_FILES="*.jsc"
-	echo "Replacing old files with new ones..."
+	echo "${ORANGE}Replacing old files with new ones...${RESET}"
 	for f in $C_FILES
 	do
 		FILE_NAME=$(echo $f | cut -d'.' -f 1)
