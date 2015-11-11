@@ -34,7 +34,7 @@ function replace
 	for f in $C_FILES
 	do
 		FILE_NAME=$(echo $f | cut -d'.' -f 1)
-		rm FILE_NAME".js"
+		rm $FILE_NAME".js"
 		mv $f $FILE_NAME".js"
 	done
 }
