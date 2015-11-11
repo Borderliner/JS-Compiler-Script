@@ -1,9 +1,8 @@
 #! /usr/bin/bash
 
-FILES="*.js"
-
 function compile
 {
+	FILES="*.js"
 	for f in $FILES
 	do
 		OUTPUT_FILE=$f"c"
@@ -38,3 +37,5 @@ function replace
 		mv $f $FILE_NAME".js"
 	done
 }
+
+compile
