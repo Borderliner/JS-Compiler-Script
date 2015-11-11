@@ -2,7 +2,7 @@
 
 FILES="*.js"
 
-function compile()
+function compile
 {
 	for f in $FILES
 	do
@@ -12,23 +12,23 @@ function compile()
 		closure --js $INPUT_FILE --js_output_file $OUTPUT_FILE
 	done
 
-	prompt()
+	prompt
 }
 
-function prompt()
+function prompt
 {
 	echo "Do you want to replace newly compiled files with original files?"
 	select yn in "Yes" "No"
 	do
 		case $yn in
-			Yes ) replace(); break;;
+			Yes ) replace; break;;
 			No ) exit;;
 		esac
 	done
 	
 }
 
-function replace()
+function replace
 {
 	C_FILES="*.jsc"
 	for f in $C_FILES
