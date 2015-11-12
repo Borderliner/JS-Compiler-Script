@@ -53,7 +53,7 @@ function replace
 	echo "${ORANGE}Replacing old files with new ones...${RESET}"
 	for f in $C_FILES
 	do
-		FILE_NAME=$(echo $f | cut -d'.' -f 1)
+		FILE_NAME=$(echo $f | rev | cut -c 5- | rev)
 		rm $FILE_NAME".js"
 		mv $f $FILE_NAME".js"
 	done
