@@ -41,7 +41,7 @@ function prompt
 	do
 		case $yn in
 			Yes ) replace; break;;
-			No ) exit;;
+			No ) echo "${GREEN}Successfully compiled!${RESET}"; exit;;
 		esac
 	done
 	
